@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import * as bookApi from '../BooksAPI';
 import Book from '../component/book';
 import { Link } from 'react-router-dom';
-// import Book from '../component/book';
 export default class Search extends Component {
     constructor(props) {
         super(props);
@@ -15,15 +13,7 @@ export default class Search extends Component {
         }
     }
 
-    componentDidMount() {
-        this.getAllBooks()
-    }
-
-    getAllBooks() {
-        bookApi.getAll().then( data => {
-            this.setState({allBooks: data})
-        })
-    }
+  
 
     setSearchState(books, curReq) {
         if(curReq < this.state.maxReq) {
