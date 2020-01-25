@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as bookApi from '../BooksAPI';
 import Book from '../component/book';
 import { Link } from 'react-router-dom';
+
 export default class Search extends Component {
     constructor(props) {
         super(props);
@@ -30,6 +31,10 @@ export default class Search extends Component {
             return;
         }
         bookApi.search(term).then( books =>{
+            if(!Array.isArray(books)){
+             return   this.setSearchState([], curReq)
+            }
+
             this.setSearchState(books, curReq)
         }).catch(() => {
             this.setSearchState([], curReq)
@@ -72,9 +77,10 @@ export default class Search extends Component {
         return searchBook
     }
     render() {
-        let books = this.state.books.map((book) => (
-            <Book key={book.id} {...this.getBook(book)} handler={this.updateHandler.bind(this)} />
-        ))
+          
+            let books =  this.state.books.map((book) => {
+           return <Book key={book.id} {...this.getBook(book)} handler={this.updateHandler.bind(this)} />
+            })
         return (
             <div className="search-books">
                 <div className="search-books-bar">
@@ -87,7 +93,7 @@ export default class Search extends Component {
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                        {books}
+                        {books.length? books: ""}
                     </ol>
                 </div>
                 
