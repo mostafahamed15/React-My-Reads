@@ -32,5 +32,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "resolutions": {
+    "minimist": "^0.2.1",
+    "kind-of": "^6.0.3",
+    "lodash": "^4.17.19",
+    "serialize-javascript": "^^2.1.1",
+    "acorn": ">=5.7.4"
   }
 }
